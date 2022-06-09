@@ -4,32 +4,60 @@ import axios from 'axios';
 //import axios from "axios";
 function App() {
   // States
-  const [successMsg, setSuccessMsg] = useState('Click Below!') 
-  // send something to backend when you click
-  const sendToServer = ()=>{
-    // Call Backend api using Axios Get
-    //axios.get('/api/test').then().catch()
-    fetch('/api/test')
-    .then(response=> response.json())// get only json data
-    .then(data=> setSuccessMsg(data))
-    .catch(error => console.log(error));
-  }
- 
+  const [users, setUsers] = useState([]) // empty array
+  const [user, setUser] = useState()
+  const [successMsg, setSuccessMsg] = useState()
+  const [errorMsg, setErrorMsg] = useState()
+
   // Get 10 users from a API
   const getUsers = ()=>{
     // fetch('/api/userAll')
     // .then(response => response.json())
     // .then(users => console.log(users))
     axios.get('/api/userAll')
-    .then(users => console.log(users.data))
+    .then(users => {
+      console.log(users.data)
+      setUsers(users.data)
+    })
   }
 
+  // Get user by id
+  const getUserById = (id)=>{
+    console.log(id)
+    axios.get('/api/userById/'+ id)
+    .then(user=> {
+      console.log(user.data)
+      if(user.data.user) {
+        setUser(user.data.user)
+        setSuccessMsg(user.data.message)
+      }
+      else{
+        setErrorMsg(user.data.message)
+      }
+    })
+  }
   return (
     <div className="App">
       <header className="App-header">
-        <h3>{successMsg}</h3>
-        <button type="submit" onClick={sendToServer}>Say Hello to Backend</button>
-        <button type="submit" onClick={getUsers}>Show Users</button>
+        
+        {
+          user && <h2>{successMsg} UserID: {user.id}</h2>
+        }
+
+        {
+          errorMsg && <h2>{errorMsg}</h2>
+        }
+
+        <button type="submit" onClick={getUsers}>GET USERS</button>
+        <ul>
+          {users.map((user, index)=>{
+          return <li key={index}>
+            <a href="#" onClick={()=> getUserById(user.id)}>ID: {user.id}</a> , 
+            User Name: {user.username}, 
+            Email: {user.email}
+            </li>
+          })}
+        </ul>
       </header>
     </div>
   );

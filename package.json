@@ -1,17 +1,24 @@
 {
   "name": "08june22",
   "version": "1.0.0",
-  "description": "connecting React and express js",
-  "main": "server.js",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "client": "npm start --prefix client",
+    "server": "nodemon server.js --prefix server",
+    "start": "concurrently \"npm run client\" \"npm run server\" "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ariffira/08June22.git"
   },
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ariffira/08June22/issues"
+  },
+  "homepage": "https://github.com/ariffira/08June22#readme",
   "dependencies": {
-    "axios": "^0.27.2",
-    "cors": "^2.8.5",
-    "express": "^4.18.1"
+    "concurrently": "^7.2.1"
   }
 }
