@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/ariffira/08June22#readme",
   "dependencies": {
-    "concurrently": "^7.2.1"
+    "concurrently": "^7.2.1",
+    "dotenv": "^16.0.1"
   }
 }
