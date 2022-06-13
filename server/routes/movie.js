@@ -4,7 +4,7 @@ const axios = require("axios");
 const API_KEY = process.env.MY_API_KEY
 // Routes for Movie
 router.get("/title/:moviename", (req, res)=>{
-    console.log(req.params.moviename)
+    console.log(req.params.moviename, API_KEY)
     axios
     .get(`https://www.omdbapi.com/?t=${req.params.moviename}&apikey=${API_KEY}`)
     .then(response => {
