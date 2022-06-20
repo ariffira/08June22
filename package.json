@@ -1,23 +1,14 @@
 {
-  "name": "08june22",
+  "name": "loginsystem",
   "version": "1.0.0",
-  "description": "",
+  "description": "Tutorial to make full stack login authentication",
   "main": "index.js",
+  "author": "Md Ariful Islam, DCI-Web dev",
   "scripts": {
     "client": "npm start --prefix client",
     "server": "nodemon server.js --prefix server",
     "start": "concurrently \"npm run client\" \"npm run server\" "
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ariffira/08June22.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ariffira/08June22/issues"
-  },
-  "homepage": "https://github.com/ariffira/08June22#readme",
   "dependencies": {
     "concurrently": "^7.2.1",
     "dotenv": "^16.0.1"
